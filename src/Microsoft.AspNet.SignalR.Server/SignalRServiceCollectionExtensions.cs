@@ -4,21 +4,25 @@
 
 using Microsoft.AspNet.SignalR;
 using Microsoft.Framework.ConfigurationModel;
+using System;
 
 namespace Microsoft.Framework.DependencyInjection
 {
     public static class SignalRServiceCollectionExtensions
     {
-        public static SignalRServiceCollection AddSignalR(this IServiceCollection services)
+        public static IServiceCollection AddSignalR(this IServiceCollection services)
         {
-            services.Add(SignalRServices.GetDefaultServices());
-            return new SignalRServiceCollection(services);
+            return services.Add(SignalRServices.GetDefaultServices());
         }
 
-        public static SignalRServiceCollection AddSignalR(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddSignalR(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Add(SignalRServices.GetDefaultServices(configuration));
-            return new SignalRServiceCollection(services);
+            return services.Add(SignalRServices.GetDefaultServices(configuration));
+        }
+
+        public static IServiceCollection ConfigureSignalR(this IServiceCollection services, Action<SignalROptions> configure)
+        {
+            return services.ConfigureOptions(configure);
         }
     }
 }

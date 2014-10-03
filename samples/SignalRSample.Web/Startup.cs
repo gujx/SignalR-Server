@@ -11,7 +11,7 @@ namespace SignalRSample.Web
             {
                 services
                     .AddSignalR()
-                    .SetupOptions(options =>
+                    .ConfigureSignalR(options =>
                     {
                         options.Hubs.EnableDetailedErrors = true;
                     });
