@@ -21,7 +21,7 @@ namespace Microsoft.Framework.DependencyInjection
         public IServiceCollection SetupOptions(Action<SignalROptions> configure)
         {
             // The generic SetupOptions extension method is not found without a reference to "this"
-            return _baseCollection.SetupOptions<SignalROptions>(configure);
+            return _baseCollection.ConfigureOptions(configure);
         }
     }
 }
