@@ -38,7 +38,7 @@ namespace Microsoft.Framework.DependencyInjection
 
         public static IServiceCollection ConfigureSignalR(this IServiceCollection services, Action<SignalROptions> configure)
         {
-            return services.ConfigureOptions(configure);
+            return services.Configure(configure);
         }
     }
 }
