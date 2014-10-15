@@ -27,7 +27,7 @@ namespace Microsoft.Framework.DependencyInjection
             var result = new SignalRServiceCollection(services);
             if (configuration != null)
             {
-                services.ConfigureOptions<SignalROptions>(configuration);
+                services.Configure<SignalROptions>(configuration);
             }
             if (configureOptions != null)
             {
