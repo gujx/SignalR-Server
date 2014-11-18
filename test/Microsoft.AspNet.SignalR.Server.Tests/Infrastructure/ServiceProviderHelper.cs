@@ -22,13 +22,14 @@ namespace Microsoft.AspNet.SignalR.Tests
         public static IServiceProvider CreateServiceProvider(Action<IServiceCollection> configure)
         {
             var collection = new ServiceCollection()
+                .Import(CallContextServiceLocator.Locator.ServiceProvider)
                 .Add(OptionsServices.GetDefaultServices())
                 .Add(HostingServices.GetDefaultServices())
                 .Add(SignalRServices.GetDefaultServices());
 
             configure(collection);
 
-            return collection.BuildServiceProvider(CallContextServiceLocator.Locator.ServiceProvider);
+            return collection.BuildServiceProvider();
         }
     }
 }

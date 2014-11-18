@@ -80,10 +80,11 @@ namespace Microsoft.AspNet.SignalR.Tests.Hubs
         {
             //var resolver = new DefaultDependencyResolver();
             var serviceProvider = new ServiceCollection()
+                .Import(CallContextServiceLocator.Locator.ServiceProvider)
                 .Add(OptionsServices.GetDefaultServices())
                 .Add(HostingServices.GetDefaultServices())
                 .Add(SignalRServices.GetDefaultServices())
-                .BuildServiceProvider(CallContextServiceLocator.Locator.ServiceProvider);
+                .BuildServiceProvider();
 
             var manager = serviceProvider.GetRequiredService<IConnectionManager>();
 
